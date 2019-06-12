@@ -1,0 +1,140 @@
+<!DOCTYPE=html>
+<html>
+
+<head>
+    <title>자바스크립트의 객체</title>
+    <script>
+        /*객체 형태*/
+        var obj1 = {};
+        var arr1 = [];
+       /* alert(typeof(obj1));*/
+        //속성 표현 => 속성이름 : 속성(자바스크립트의 데이터(6가지종류))
+        var person = {
+            name: '롤찔이',
+            age: 24,
+            check: true,
+            books: ['java의 정석', '이것이 자바다', '열혈자바'],
+            eat: function(food) { //객체의 속성 타입이 함수인 경우 메서드라 표현
+            /*alert(this.name + '님이' + food + '를 먹습니다.');*/
+        }
+        };
+        //동적으로 속성추가
+        person.job = 'Programmer';
+        person.hello = function(){
+      /*      alert('안녕하세요');*/
+        }
+        person.hello();
+
+        alert(person.check);
+        for (var key in person) {
+          /*  alert(person[key]);*/
+        }
+        //객체의 속성 참조
+        /*alert(person.name);*/
+        //객체의 메서드 호출
+        person.eat('젤리');
+        
+        //생성자 함수 정의
+        //함수의 이름(식별자)의 첫글자 대문자로 쓴다.
+        function Student(sname,k,e,m){
+            this.name = sname;//이름
+            this.kor = k;//국어점수
+            this.meth = m;//수학점수
+            this.eng = e;//영어점수
+            
+           /* //총점 계산 함수(메서드)
+            this.getSum = function(){
+              return this.kor+this.eng+this.meth;  
+            };
+            //평균 계산 함수(메서드)
+            this.getAvg = function(){
+              return this.getSum()/3;
+            };
+            //결과 출력 메서드
+            this.toString = function(){
+                return this.name+'    '+this.getSum()+'    '+
+                    this.getAvg()+'\n'
+            };
+        };*/
+            //공통으로 사용되는 메서드를 정의
+            //프로토타입에 메서드 정의
+            Student.prototype.getSum = function(){
+               return this.kor+this.eng+this.meth; 
+            };
+            Student.prototype.getAvg = function(){
+                return this.getSum()/3;
+            };
+            Student.prototype.toString = function(){
+                return this.name+'    '+this.getSum()+'    '+
+                    this.getAvg()+'\n'
+            };
+        
+        //학생정보를 저장하는 배열 생성
+        var students = [];
+        students.push({name:'롤찔이0',kor:86, meth:91, eng:100});
+        students.push(new Student('롤찔이0',86,91,100));
+
+        students.push({name:'롤찔이1',kor:16, meth:92, eng:90});
+        students.push(new Student('롤찔이1',16,92,90));
+        
+        students.push({name:'롤찔이2',kor:26, meth:93, eng:80});
+        students.push(new Student('롤찔이2',26,93,80));
+        
+        students.push({name:'롤찔이3',kor:36, meth:94, eng:70});
+        students.push(new Student('롤찔이3',36,94,70));
+        
+        students.push({name:'롤찔이4',kor:46, meth:95, eng:60});
+        students.push(new Student('롤찔이4',46,95,60)); 
+        
+        students.push({name:'롤찔이5',kor:56, meth:96, eng:50});
+        students.push(new Student('롤찔이5',56,96,50));
+        
+        students.push({name:'롤찔이6',kor:66, meth:97, eng:40});
+        students.push(new Student('롤찔이6',66,97,40));
+        
+        students.push({name:'롤찔이7',kor:76, meth:98, eng:30});
+        students.push(new Student('롤찔이7',76,98,30));
+        
+        students.push({name:'롤찔이8',kor:60, meth:99, eng:20});
+        students.push(new Student('롤찔이8',60,99,20));
+        
+        students.push({name :'롤찔이9',kor:96, meth:100, eng:10});
+        students.push(new Student('롤찔이9',96,100,10));
+        
+        for(var k in students){
+            //총점을 구하는 메서드 정의, 추가
+             students[k].getSum = function(){
+          return this.kor+this.meth+this.eng;  
+        };
+            //평균을 구하는 메서드 정의, 추가
+        students[k].getAverage = function(){
+          return this.getSum()/3;  
+          };
+        }
+            students.sort(function(left, right){
+               return right.getSum()-left.getSum(); 
+            });
+            
+            students = students.slice(0,3);
+        
+        var output = '이름\t      총점\t   평균\n';
+        for(var i=0; i<Student.length; i++){
+            /*with(students[i]){*/
+            /*output += name + '\t   ' + getSum() + '\t    ' + getAverage() +'\n'; */
+             output += students[i].toString
+          /*}*/
+        };
+        alert(output);
+        
+        
+       
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+
+</html>

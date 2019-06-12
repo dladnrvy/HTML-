@@ -1,0 +1,110 @@
+<!DOCTYPE=html>
+    <html>
+
+    <head>
+    <title>스카이스캐너 만들기</title>
+
+    <style>
+        #skymain {
+            width: 230px;
+            height: 102.5px;
+        }
+
+        #rogin {
+            margin-left: 400px;
+        }
+
+        #icon {
+            list-style: none;
+            overflow: hidden;
+            margin-left: 0;
+            margin-top: 30;
+
+        }
+
+        #icon>li {
+            float: left;
+            border: 1px solid #dddddd;
+            background-color: deepskyblue;
+            color: white;
+            border-radius: 10px 10px 0 0px;
+
+        }
+
+        #choice>td,
+        #cho>td {
+            padding: 10;
+            height: 100;
+        }
+
+
+        a {
+            color: white;
+            display: block;
+            text-decoration: none;
+            /* padding: 30 30 0 0;*/
+            margin: 13 13;
+        }
+
+        a:hover {
+            color: white;
+            background-color: blue;
+            border-radius: 10px 10px 0 0px;
+        }
+
+        #main {
+            background-image: url(main.jpg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            height: 350px;
+            color: white;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="header">
+        <img src="sky.jpg" id="skymain">
+        <input type="button" value="로그인" id="rogin">
+        <ul id="icon">
+            <li><a href="https://www.skyscanner.co.kr/">비행기</a></li>
+            <li><a href="https://www.skyscanner.co.kr/hotels">숙소</a></li>
+            <li><a href="https://www.skyscanner.co.kr/car-hire">렌트</a></li>
+        </ul>
+        <div id="main">
+            <input type="radio" name="choice">왕복
+            <input type="radio" name="choice">편도
+            <input type="radio" name="choice">다구간
+            출발지 <br><br><select>
+                <option>서울</option>
+                <option>의정부</option>
+            </select>
+
+            도착지 <br><br><select>
+                <option> 제주</option>
+                <option>오사카</option>
+            </select>
+            가는날<br><br>
+            <input type="date">
+            오는날<br><br>
+            <input type="date">
+
+            <input type="checkbox">주변 공항 추가
+            <input type="checkbox">주변 공항 추가
+            <input type="button" value="항공권 검색">
+
+            <input type="checkbox">직항만
+        </div>
+
+    </div>
+    <div id="body">
+        바디
+    </div>
+
+    <div id="footer">
+        마지막
+
+    </div>
+</body></html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+    <html>
+
+    <head>
+    <title>CSS3 선택</title>
+    <style>
+        /*전체선택*/
+        /*   * {*/
+        /*color: red;*/
+        /* background-color: aquamarine;*/
+        /*  }*/
+
+        /*글자선택*/
+        /*  h1 {
+            color: red;
+            text-align: center;
+        }
+
+        p {
+            color: blue;
+            line-height: 32px;
+        }*/
+
+        /*중복 선택*/
+        /* h1,
+        p,
+        div,
+        body {
+            background-color: darkslategray;
+        }*/
+
+        /*id 선택자*/
+        /* #header {
+            background-color: aqua;
+            margin: 0 auto;*/
+        /*                   상하 좌우    */
+        /* width: 500px;
+        }*/
+
+        /*#wrap {
+            background-color: yellow;
+            padding: 20px;
+            margin: 0 auto;*/
+        /*                   상하 좌우 */
+        /*  width: 500px;
+        }*/
+
+        /* #content {
+            background-color: beige;
+            margin-bottom: 50px;
+            width: 500px;
+        }*/
+
+        /*#aside {
+            background-color: aquamarine;
+            width: 500px;
+        }*/
+
+        /* #footer {
+            background-color: brown;
+            margin: 0 auto;*/
+        /*                   상하 좌우 */
+        /*   width: 500px;
+        }
+        }*/
+        /*class 선택자*/
+        .select {
+            color: darkblue;
+        }
+
+        .text_bold {
+            font-weight: 500;
+        }
+
+        .text_itelic {
+            font-style: italic;
+        }
+
+        li.text_bold {
+            background-color: brown;
+        }
+
+        /*     속성 선택*/
+        input[type=text] {
+            background-color: aqua;
+            /*두께, 모양, 색상*/
+            border: 1px solid #AAAAAA;
+        }
+
+        input[type=password] {
+            background-color: coral;
+            /*두께, 모양, 색상*/
+            border: 1px solid blue;
+        }
+
+        input[type=checkbox] {
+            width: 30px;
+            height: 30px;
+        }
+
+        input[type=button] {
+            padding: 10px 30px;
+            font-weight: 900;
+            background-color: darkseagreen;
+            border: 1px solid #AAAAAA;
+            color: blueviolet
+        }
+
+        #header h1 {
+            color: aqua;
+        }
+
+        #content h1 {
+            color: blueviolet;
+        }
+
+        #content>h1 {
+            color: darkolivegreen;
+            background-color: black;
+        }
+
+        #header>h1 {
+            background-color: black;
+        }
+
+        table>tr>th {
+            color: aqua
+        }
+
+        h1+h2 {
+            color: red;
+        }
+
+        h1~h2 {
+            background-color: aquamarine
+        }
+
+        h1~h2:hover {
+            color: darkorange;
+            background-color: cornflowerblue;
+
+        }
+
+        h1+h2:active {
+            background-color: darkgoldenrod;
+            color: deeppink;
+        }
+
+        input:disabled {
+            background-color: aqua;
+        }
+
+        input:focus {
+            background-color: black;
+        }
+
+        #menu {
+            display: none;
+        }
+
+        input[type=checkbox]:checked+div#menu {
+            display: block;
+        }
+
+        input[type=checkbox] {
+            display: none;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
+        label:hover {
+            background-color: blueviolet;
+        }
+
+        #cir {
+            width: 100px;
+            height: 100px;
+            background-color: chartreuse;
+            border-radius: 50px;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+
+            border-radius: 100px;
+        }
+
+        #gnb {
+            list-style: none;
+            overflow: hidden;
+        }
+
+        #gnb>li {
+            float: left;
+            /*padding: 5px 15px;*/
+            border: 1px solid #dddddd;
+            margin-left: -1px;
+        }
+
+        #gnb>li:first-child {
+            background-color: aqua;
+            border-radius: 10px 0 0 10px;
+        }
+
+        #gnb>li:last-child {
+            background-color: aquamarine;
+            border-radius: 0 10px 10px 0;
+        }
+        #gnb>li:nth-child(2n){
+            background-color: cadetblue;
+        }
+        #gnb>li:nth-child(2n+1){
+            background-color: aquamarine;
+        }
+        #gnb>li:hover{
+            background-color:darksalmon;
+            color: white;
+        }
+        a{
+            text-decoration: none;
+            display: block;
+            padding: 5px 15px;
+        }
+        a:hover{
+            color: white;
+        }
+        a:visited{
+            color: white;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <ul id="gnb">
+        <li><a href="https://comic.naver.com/webtoon/detail.nhn?titleId=557672&no=242&weekday=thu">1번 </a></li>
+        <li><a href="https://comic.naver.com/webtoon/detail.nhn?titleId=557672&no=242&weekday=thu">2번</a></li>
+        <li><a href="https://comic.naver.com/webtoon/detail.nhn?titleId=557672&no=242&weekday=thu">3번</a></li>
+        <li><a href="https://comic.naver.com/webtoon/detail.nhn?titleId=557672&no=242&weekday=thu">4번</a></li>
+        <li><a href="https://comic.naver.com/webtoon/detail.nhn?titleId=557672&no=242&weekday=thu">5번</a></li>
+        <li><a href="https://comic.naver.com/webtoon/detail.nhn?titleId=557672&no=242&weekday=thu">6번</a></li>
+    </ul>
+
+    <img src="pig.gif">
+    <div id="cir"></div>
+
+    <!--<input><br>
+    <input disabled><br>
+    <label for="chk">메뉴</label>
+    <input type="checkbox" id="chk">
+    <div id="menu">
+        <ul>
+            <li>홈</li>
+            <li>회사소개</li>
+            <li>오시는길</li>
+        </ul>
+    </div>-->
+
+
+    <!-- <table border="1">
+        <tr>
+            <th>이름</th>
+            <th>주소</th>
+        </tr>
+        <tr>
+            <td>유영진</td>
+            <td>서울특별시 서초구</td>
+        </tr>
+    </table>-->
+
+    <!--<h1>Header - 1</h1>
+    <h2>Header - 2</h2>
+    <h2>Header - 2</h2>
+    <h2>Header - 2</h2>
+    <h2>Header - 2</h2>-->
+
+    <!--
+    <div id="header">
+        <h1>타이틀</h1>
+        <div>
+            <h1>타이틀 2</h1>
+        </div>
+    </div>
+
+    <div id="content">
+        <h1>타이틀 3</h1>
+        <p>내용</p>
+    </div>
+-->
+
+    <!--<input type="text"><br>
+    <input type="password"><br><br>
+    <input type="button" value="버튼"><br>
+    <input type="checkbox">-->
+
+
+
+    <!--<div class="text_bold">과일 리스트</div>
+    <ul>
+        <li class="select text_bold">사과</li>
+        <li>바나나</li>
+        <li class="select text_itelic">수박</li>
+        <li>메론</li>
+    </ul>-->
+    <!--<div id="header">
+        Header 영역
+
+    </div>
+
+    <div id="wrap">
+        
+
+        <div id="content">
+            content 영역
+
+        </div>
+        <div id="aside">
+            aside 영역
+
+        </div>
+
+    </div>
+
+
+    <div id="footer">
+        footer 영역
+    </div>-->
+    <!--<h1>제목 글자 태그</h1>
+    <p>토트넘은 2일 오전 4시(한국시간) 스페인 마드리드 완다 메트로폴리타노서 열린 2018/2019 유럽축구연맹(UEFA) 챔피언스리그(UCL) 결승에서 살라와 오리기에게 실점해 0-2로 패하며 준우승에 머물렀다.
+
+        기대를 모았던 손흥민은 선발로 출전해 풀타임을 뛰었지만, 공격 포인트를 올리는데 실패했다. 토트넘은 전반적으로 부진했고, 리버풀을 넘기 버거웠다.</p>
+    <div>
+    DIV 블럭 영역
+    </div>-->
+
+
+
+</body></html>

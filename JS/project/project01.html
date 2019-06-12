@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>회원관리</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #main_wrap {
+            width: 478px;
+            height: 100%;
+            margin: 0 auto;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #a4b0be;
+            border: 1px solid #DDD;
+            border-radius: 5px;
+        }
+
+        .title {
+            font-size: 24px;
+            color: #2f3542;
+        }
+
+        h3 {
+            color: #2f3542;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid gray;
+            margin: 10px 0;
+        }
+
+        #regBox>form>table {
+            width: 100%;
+        }
+
+        #regBox>form>table td {
+            width: 25%;
+            padding: 5px;
+        }
+
+        .input {
+            width: 100%;
+            font-size: 16px;
+            padding: 3px;
+            display: block;
+            margin-top: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #2c3e50;
+            color: beige;
+            padding: 5px 0;
+            font-size: 16px;
+            border: 1px solid #ddd;
+        }
+
+        label {
+            display: block;
+        }
+
+        .table {
+            width: 100%;
+            /*셀과 셀사이 1px로 통일*/
+            border-collapse: collapse;
+        }
+
+        .table td {
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #DDD;
+            background-color: aliceblue;
+        }
+
+        a {
+            cursor: pointer;
+        }
+        #editBox{
+            background-color: #DDD;
+            width: 300px;
+            padding: 10px;
+            border: 3px solid black;
+            position: absolute;
+            top : 50px;
+            left: 50%;
+            margin-left: -150px;
+            display: none;
+        }
+        #change{
+            margin: 5px;
+            margin-top: 5px;
+            padding: 5px 30px;
+        }
+        #cancle{
+            margin: 5px;
+            margin-top: 5px;
+            padding: 5px 30px;
+        }
+        #editForm{
+            text-align: center;
+            margin-left: 20px;;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main_wrap">
+        <h1 class="title">UKPYO Member Manager</h1>
+        <hr>
+        <!--데이터입력 영역 시작-->
+        <div id="regBox">
+            <h3>ㆍ손절등록</h3>
+            <form id="regForm" type="post">
+                <table>
+                    <tr>
+                        <td>
+                            <!--                            <label for="userId">아이디(이메일)</label>-->
+                            <input type="text" id="userId" name="userId" class="input" placeholder="아이디(이메일)">
+                        </td>
+                        <td>
+                            <!--<label for="userPw">비밀번호</label>-->
+                            <input type="password" id="userPw" name="userPw" class="input" placeholder="비밀번호">
+                        </td>
+                        <td>
+                            <!-- <label for="username">이름</label>-->
+                            <input type="text" id="userName" name="userName" class="input" placeholder="이름">
+                        </td>
+                        <td>
+                            <input type="submit" value="등록" class="input">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <!--데이터 입력 영역 끝-->
+        <hr>
+        <!--회원 리스트 테이블 영역 시작-->
+        <h3>ㆍ블랙리스트</h3>
+        <div id="memberlist">
+            <table class="table">
+                <tbody id="listRow">
+                    <tr>
+                        <td>순번(index)</td>
+                        <td>아이디</td>
+                        <td>비밀번호</td>
+                        <td>이름</td>
+                        <td>관리</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <!--회원 리스트 테이블 끝-->
+
+
+        <div id="editBox">
+            <h3>회원 정보 수정</h3>
+            <form id="editForm" method="post">
+                <table>
+                    <tr>
+                        <td>아이디</td>
+                        <td>
+                            <input type="text" id="editId">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>비밀번호</td>
+                        <td>
+                        <input type="password" id="editPw">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>이름</td>
+                        <td>
+                            <input type="text" id="editName">
+                            <input type="hidden" id="editIndex">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="수정" id="change">
+                            <input type="button" value="취소" id="cancle">
+                        </td>
+
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+    </div>
+
+
+
+    <script>
+        //Member 객체들을 저장하기 위한 배열 생성
+        /*var members = [];*/
+        
+        //저장소 변수 선언
+        //localStorage 에서 데이터 유무에 따라 배열 선언
+        var members;
+        
+       
+        
+        //회원 데이터 저장 목적으로 하는 생성자함수 정의
+        //id : 회원의 아이디, 이메일 주소
+        //pw : 비밀번호
+        //name : 회원의 이름
+        //메서드 : 사용자 데이터를 가지고 html 텍스트를 완성하는 메서드
+
+        function Member(id, pw, name) {
+            this.userId = id;
+            this.userPw = pw;
+            this.userName = name;
+        };
+
+        Member.prototype.makeHtml = function(i) {
+            var nHtml = '';
+            nHtml += '<tr>\n';
+            nHtml += '<td>' + i + '</td>';
+            nHtml += '<td>' + this.userId + '</td>';
+            nHtml += '<td>' + this.userPw + '</td>';
+            nHtml += '<td>' + this.userName + '</td>';
+            nHtml += ' <td><a onclick="editMember(' + i + ');">수정 </a>| <a onclick="delMember(' + i + ');">삭제</a></td>';
+            nHtml += '</tr>\n';
+
+            return nHtml;
+
+        };
+/*
+
+          Member.prototype.showData = function(){
+              alert('아이디: \n '+this.userId+ '비밀번호: \n'+this.userPw + '이름:'+this.userName);
+          };
+
+        Member.prototype.toString = function(){
+          return '<h4>아이디:'
+              +this.userId+ 
+              ',비밀번호:'
+              +this.userPw+
+              ',이름:'
+              +this.userName
+            +'</h4>\n';
+            
+            return str;
+        };
+*/
+
+        window.onload = function() {
+            
+             if(localStorage.getItem('members')==null){
+            //최초 실행
+            members = [];
+            
+            //localStorage 에 배열을 저장
+            //제이슨타입의 문자열로 저장
+            localStorage.setItem('members',JSON.stringify(members));
+        }else{
+            //localStorage 에 members 가 존재
+            members = JSON.parse(localStorage.getItem('members'));
+            setListTable();
+        }
+            //regForm 문서객체 만들기
+            var regForm = document.getElementById('regForm');
+
+            //회원입력 폼의 SUBMIT 재 정의
+            regForm.onsubmit = function() {
+                //사용자 입력 데이터 input 캐스팅
+                var uId = document.getElementById('userId');
+                var uPw = document.getElementById('userPw');
+                var uName = document.getElementById('userName');
+                
+
+                if (uId.value.length < 1) {
+                    alert('아이디도 안써놓고 뭐함?');
+                    uId.focus();
+                    return false;
+                }
+                if (uPw.value.length < 1) {
+                    alert('비밀번호도 안써놓고 뭐함?');
+                    uPw.focus();
+                    return false;
+                }
+                if (uName.value.length < 1) {
+                    alert('이름도 써라');
+                    uName.focus();
+                    return false;
+                }
+                //새로운 데이터로 객체 생성
+                var newMember = new Member(uId.value, uPw.value, uName.value);
+
+                /*newMember.showData();*/
+                members.push(newMember);
+                localStorage.setItem('members',JSON.stringify(members));
+                
+                alert('정상적으로 입력되었습니다.');
+                setListTable();
+                regForm.reset();
+
+                return false;
+
+
+                //1. 사용자 정보 입력 받기위한 form 구성 - html
+                //2. input - value 값을 받기
+                //3. 커스텀 value 송성 이용
+                //4. 생성자 함수를 이용 - 객체생성
+            };
+
+            //회원수정 폼의 submit 재 정의
+            var editForm = document.getElementById('editForm');
+            
+            editForm.onsubmit = function() {
+
+                //공백을 체크하는 유효성 검사
+                //1. input 캐스팅
+                //2. 객체.value 값을 검사 : 길이
+
+                var editId = document.getElementById('editId');
+                var editPw = document.getElementById('editPw');
+                var editName = document.getElementById('editName');
+                var editIndex = document.getElementById('editIndex');
+                
+
+                if (editId.value.length < 1) {
+                    alert('아이디를 입력해요');
+                    editId.focus();
+                    return false;
+                };
+
+                if (editPw.value.length < 1) {
+                    alert('비밀번호를 입력해요');
+                    editPw.focus();
+                    return false;
+                };
+
+                if (editName.value.length < 1) {
+                    alert('이름을 입력해요');
+                    editName.focus();
+                    return false;
+                };
+                
+                //아이디 수정
+                members[editIndex.value].userId = editId.value;
+                //비밀번호 수정
+                members[editIndex.value].userPw = editPw.value;
+                //이름 수정
+                members[editIndex.value].userName = editName.value;
+               
+                localStorage.setItem('members',JSON.stringify(members));
+                
+                alert('수정완료.');
+                
+
+                setListTable();
+                editForm.reset();
+                
+                document.getElementById('editBox').style.display = 'none';
+                
+                return false;
+                
+            };
+            
+            var cBtn = document.getElementById('cancle');
+            cBtn.onclick = function(){
+                document.getElementById('editBox').style.display = 'none';
+            };
+        };
+        //members 배열의 요소들을 출력기능
+        function setListTable() {
+            var newHtml = '<tr><td>순번(index)</td>\n<td>아이디</td>\n <td>비밀번호</td>\n <td>이름</td>\n <td>관리</td>\n </tr>\n';
+            for (var i = 0; i < members.length; i++) {
+                /*newHtml += members[i].toString();*/
+                /*newHtml += members[i].makeHtml(i);*/
+                
+            newHtml += '<tr>\n';
+            newHtml += '<td>' + i + '</td>';
+            newHtml += '<td>' + members[i].userId + '</td>';
+            newHtml += '<td>' + members[i].userPw + '</td>';
+            newHtml += '<td>' + members[i].userName + '</td>';
+            newHtml += ' <td><a onclick="editMember(' + i + ');">수정 </a>| <a onclick="delMember(' + i + ');">삭제</a></td>';
+            newHtml += '</tr>\n';
+            };
+
+            document.getElementById('listRow').innerHTML = newHtml;
+
+            /*document.getElementById('memberlist').innerHTML = newHtml;*/
+        };
+
+        //1.팝업
+        //2.사용자 요청 데이터 
+        //3.수정데이터 대입
+        //4.set table
+        function editMember(index) {
+            
+            /*var eBox = document.getElementById('editbox');*/
+            
+            /*eBox.style.display='block';*/
+            document.getElementById('editBox').style.display = 'block';
+            
+            alert(index + '번 요소 수정');
+            //수정 폼의 아이디, 비밀번호, 이름 input 캐스팅
+            var eId = document.getElementById('editId');
+            var ePw = document.getElementById('editPw');
+            var eName = document.getElementById('editName');
+            var eIndex = document.getElementById('editIndex')
+
+            //기존 데이터를 캐스팅한 객체 value 값을 대입
+            eId.value = members[index].userId;
+            ePw.value = members[index].userPw;
+            eName.value = members[index].userName;
+            eIndex.value = index;
+
+        };
+
+        function delMember(index) {
+            /*alert(index + '번 요소 삭제');
+            members.splice(index, 1);
+            setListTable();*/
+            var delChk = confirm('삭제하시겠습니까?');
+            
+            if(delChk){
+                //삭제 -> 배열에서 요소 삭제
+                members.splice(index,1);
+                localStorage.setItem('members',JSON.stringify(members));
+                alert('삭제되었습니다.');                
+                setListTable();           
+            }
+        };
+    </script>
+
+
+
+
+
+
+
+
+
+
+</body></html>
