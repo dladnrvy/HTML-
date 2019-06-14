@@ -1,0 +1,214 @@
+<!DOCTYPE=html>
+    <html>
+
+    <head>
+    <title>네이버 로그인 제작</title>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        /*전체*/
+        #wrap {
+            margin: 0 auto;
+            width: 100%;
+            height: 1080px;
+            background-color: blueviolet;
+        }
+
+        /*위*/
+        #header {
+            margin: 0 auto;
+            width: 500px;
+            height: 80px;
+            border: 1px solid black;
+            background-color: aqua;
+            text-align: center;
+        }
+
+        /*중앙*/
+        #main {
+            margin: 0 auto;
+            width: 500px;
+            height: 900px;
+            background-color: beige;
+            
+        }
+
+        /*밑*/
+        #footer {
+            margin: 0 auto;
+            width: 500px;
+            height: 97px;
+            background-color: brown;
+            text-align: center;
+        }
+
+        #rogo {
+            width: 220px;
+            margin-left: 10px;
+            margin-top: 15px;
+        }
+
+        #language {
+            float: right;
+            margin-top: -50px;
+            margin-right: 20px;
+            padding: 3px 25 3 0;
+        }
+
+        .div {
+            text-align: center;
+            padding-bottom: 10px;
+            
+        }
+
+        h4 {
+            text-align: left;
+            margin-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .text {
+            width: 450px;
+            height: 53px;
+            text-align: right;
+            padding-right: 15px;
+        }
+
+        input[type=password] {
+            width: 450px;
+            height: 53px;
+        }
+
+        .bor {
+            width: 146px;
+            height: 53px;
+        }
+        #year{
+            margin-left: 25px;
+            margin-bottom: 10px;
+        }
+        #sel{
+            width: 450px;
+            height: 53px;
+        }
+        #h4{
+            display: inline;
+            float: left;
+        }
+        #P{
+            display: inline;
+            margin-right: 300px;
+        }
+        #pon{
+            width: 450px;
+            height: 53px;
+            margin-bottom: 10px;
+        }
+        #number{
+            height: 53px;
+            width: 330px;
+            margin-left: 1px;
+            margin-right: 4px;
+        }
+        #get{
+            height: 53px;
+            width: 111px;
+        }
+        #num{
+            background-color: gray;
+            border: 1px solid #DDD; 
+            padding: 16px 0;
+            padding-left: 10px;
+            font-size: 15px;
+            text-align: left;
+            margin-top: 10px;
+            margin-left: 25px;
+            width: 438px;
+        }
+        #sub{
+            width: 450px;
+            height: 60px;
+            font-size: 23px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="header">
+            <a href="https://www.naver.com/"><img src="naver.png" id="rogo"></a>
+        </div>
+        <div id="main">
+            <form name="choice">
+                <div id="a" class="div">
+                    <h4>아이디</h4>
+                    <input type="text" id="ID" placeholder="@naver.com" class="text">
+                </div>
+                <div id="b" class="div">
+                    <h4>비밀번호</h4>
+                    <input type="password" id="PW" class="text">
+                </div>
+                <div id="c" class="div">
+                    <h4>비밀번호 재확인</h4>
+                    <input type="text" id="PWC" class="text">
+                </div>
+                <div id="d" class="div">
+                    <h4>이름</h4>
+                    <input type="text" id="Name" class="text">
+                </div>
+                <div id="e">
+                    <h4>생년월일</h4>
+                    <input type="text" placeholder="년(4자)" class="bor" id="year">
+                    <select class="bor">
+                        <option>월</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                    <input type="text" placeholder="일" class="bor">
+                </div>
+                <div id="g" class="div">
+                    <h4>성별</h4>
+                    <select id="sel">
+                        <option>성별</option>
+                        <option>남자</option>
+                        <option>여자</option>
+                    </select>
+                </div>
+                <div id="h" class="div">
+                    <h4 id="h4">본인 확인 이메일</h4>
+                    <p id="p">(선택)</p>
+                    <input type="text" placeholder="선택입력" class="text">
+                </div>
+
+                <div id="i" class="div">
+                    <h4>휴대전화</h4>
+                    <select id="pon">
+                        <option>대한민국 +82</option>
+                        <option>네덜란드 +31</option>
+                    </select>
+                    <input type="text" placeholder="전화번호 입력" id="number">
+                    <input type="submit" value="인증번호 받기" id="get">
+                    <!--<input type="" placeholder="인증번호 입력하세요">-->
+                    <div id="num">인증번호 입력하세요</div>
+
+                </div>
+
+                <div id="j" class="div"></div>
+            </form>
+        </div>
+        <div id="footer">
+            <div><input type="submit" id="sub" value="가입하기"></div>
+        </div>
+    </div>
+
+
+</body></html>
