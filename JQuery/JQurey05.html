@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>attr()</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+        $(document).ready(function(){
+           var imgpath = $('img').attr('src'); //getter
+            /*alert(imgpath);*/
+            
+            //첫번째 방법 값을 명시적으로 넣어줌
+            setTimeout(function(){
+                /*$('img').after('width',100);*/
+               /*$('img').attr('width',function(index){
+                   return (index+1)*50;
+               });*/
+                
+                /*$('img').attr({
+                    src : 'img.jpg',
+                    width : function(index){
+                        return (index+1)*50;
+                    }
+                });*/
+                
+                var chk1 = $('input:checkbox').attr('checked');
+                var chk2 = $('input:checkbox').prop('checked');
+                
+                alert(chk1+ ' : ' +chk2);
+                
+                //checked 설정
+                var chk2 = $('input:checkbox').prop('checked',true);
+                
+                if(!chk2){
+                 //   alert('개인정보 동의에 체크해주세요.');
+                }
+                
+                var href1 = $('a').attr('href');
+                var href2 = $('a').prop('href');
+               
+                /*alert(href1 + ' : ' +href2);*/
+                
+               /*alert( $('a').css('color'));*/
+                
+            
+                var text1 = $('h1').html();
+                var text2 = $('h1').text();
+                
+                alert(text1 + '  :  ' + text2)
+                
+                $('h1').html('<i>안녕</i>');
+                //$('h1').text('<i>안녕</i>');
+                
+                
+                
+            },3000);
+            
+            
+            
+        });
+        
+        
+        
+    </script>
+    </head>
+    
+    
+    
+    <body>
+       <!--checked에 아무것도 안넣으면 true상태-->
+       개인정보동의<input type="checkbox" checked>
+       <br><br><br><br>
+       
+       <a href ="JQuery/JQurey05.html">test</a>
+       
+        <h1><p>안녕하세요</p></h1>
+       
+       
+ <!--      <select>
+           <option></option>
+       </select>-->
+       
+       
+        <!--<img src ="naver.png" width="300">
+        <img src ="naver.png" width="300">
+        <img src ="naver.png" width="300">
+        <img src ="naver.png" width="300">-->
+    </body>
+
+</html>

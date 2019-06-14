@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>xml 파싱</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style>
+        h1{
+            background-color: aqua;
+        }
+        </style>
+    <script>
+        $(document).ready(function() {
+
+            var xml = '';
+            xml += '<sites>';        
+            xml += '<site>';
+            xml += '<name>NAVER</name>';
+            xml += '<url>http://www.naver.com</url>';
+            xml += '</site>';        
+            xml += '<site>';
+            xml += '<name>Daum</name>';
+            xml += '<url>http://www.daum.net</url>';
+            xml += '</site>';        
+            xml += '<site>';
+            xml += '<name>Facebook</name>';
+            xml += '<url>http://www.facebook.com</url>';
+            xml += '</site>';    
+            xml += '</sites>';
+           
+            var xhtml = $.parseXML(xml);
+            //제이커리 메서드 사용을 위해 제이커리 객체로 변환
+            var xmlDoc = $(xhtml);
+            
+           xmlDoc.find('site').each(function(){
+               var name = $(this).find('name').text();
+               var url = $(this).find('url').text();
+               
+               var output = '';
+               output += '<div>';
+               output += '<h1>';
+               output += name;
+               output += '</h1>';
+               output += '<h3>';
+               output += '   '+url;
+               output += '<h3>';
+               output += '</div>';
+               
+               document.body.innerHTML += output;
+
+               
+           });
+                
+               
+
+        });
+    </script>
+</head>
+
+<body>
+
+</body></html>
